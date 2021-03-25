@@ -12,3 +12,4 @@ https://github.com/vpsfreecz/confctl
 
 nixos
 =====
+https://nixos.wiki/wiki/Nix_Expression_Language
