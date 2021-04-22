@@ -4,7 +4,7 @@
     spin = "nixos";
     swpins.channels = [ "nixos-unstable" "vpsadminos-master" ];
         host = {
-        target = "37.205.14.143";
+        target = "37.205.14.30";
   };
   };
 }
