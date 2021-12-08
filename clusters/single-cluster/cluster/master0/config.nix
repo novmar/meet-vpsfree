@@ -21,10 +21,10 @@
 
     # nginx
     services.nginx.recommendedProxySettings = true;
-    services.nginx.virtualHosts."meet.marnov.cz" = {
+    services.nginx.virtualHosts."meetone.macabara.cz" = {
         locations = {
             "=/xmpp-websocket" = {
-                proxyPass = "http://meet.marnov.cz:5280/xmpp-websocket";
+                proxyPass = "http://meetone.macabara.cz:5280/xmpp-websocket";
                 proxyWebsockets = true ;
                 extraConfig = ''
                 proxy_read_timeout 900s;
@@ -42,11 +42,11 @@
     services.prosody = {
         xmppComplianceSuite = false;
         enable = true ;
-        virtualHosts."meet" = {
+        virtualHosts."meetone" = {
                 enabled = true;
-                domain = "meet.marnov.cz";
-                ssl.key= "${config.security.acme.certs."meet.marnov.cz".directory}/key.pem";
-                ssl.cert= "${config.security.acme.certs."meet.marnov.cz".directory}/cert.pem";
+                domain = "meetone.macabara.cz";
+                ssl.key= "${config.security.acme.certs."meetone.macabara.cz".directory}/key.pem";
+                ssl.cert= "${config.security.acme.certs."meetone.macabara.cz".directory}/cert.pem";
                 extraConfig = ''
                 authentication = "anonymous";
                 '';
@@ -70,11 +70,11 @@
     # jitsi
     services.jitsi-meet = {
         enable = true;
-        hostName = "meet.marnov.cz";
+        hostName = "meetone.macabara.cz";
         nginx.enable = true;
         prosody.enable = true;
         config = {
-        websocket = wss://meet.marnov.cz/xmpp-websocket;
+        websocket = wss://meetone.macabara.cz/xmpp-websocket;
         };
     };
 # FW
