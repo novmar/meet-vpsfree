@@ -5,7 +5,7 @@
         <vpsadminos/os/lib/nixos-container/vpsadminos.nix>
 
   ];
-  networking.hostName = "jvb0";
+  networking.hostName = "jvb2";
   networking.useDHCP = false;
   services.resolved.enable = false;
   systemd.extraConfig = ''
