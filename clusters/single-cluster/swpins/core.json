@@ -4,15 +4,15 @@
     "nix_options": {
       "fetchSubmodules": false,
       "update": {
-        "auto": false,
-        "interval": 3600,
+        "auto": true,
+        "interval": 2592000,
         "ref": "refs/heads/nixos-unstable"
       },
       "url": "https://github.com/NixOS/nixpkgs"
     },
     "state": {
       "rev": "bc5d68306b40b8522ffb69ba6cff91898c2fbbff",
-      "date": "2021-12-08T19:54:53+01:00"
+      "date": "2021-12-08T19:54:08+01:00"
     },
     "info": {
       "rev": "bc5d68306b40b8522ffb69ba6cff91898c2fbbff",
