@@ -14,6 +14,19 @@
   systemd.services.systemd-udev-trigger.enable = false;
 
   # ... standard NixOS configuration ...
-
+    networking.firewall.enable = false;
+    services.jitsi-videobridge = {
+        enable = true;
+        xmppConfigs."meet-dev.vpsfree.cz" = {
+            domain = "auth.meet-dev.vpsfree.cz";
+            hostName = "meet-dev.vpsfree.cz";
+            userName = "jvb";
+            mucNickname = "meet2";
+            disableCertificateVerification = true;
+            passwordFile = "/var/lib/jitsi-meet/videobridge-secret";
+            mucJids = "jvbbrewery@internal.meet-dev.vpsfree.cz";
+        };
+        openFirewall = true;
+    };
 
 }

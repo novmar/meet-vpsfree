@@ -14,7 +14,7 @@
   systemd.services.systemd-udev-trigger.enable = false;
   # ... standard NixOS configuration ...
 
-#  networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   security.acme.acceptTerms = true ;
   security.acme.email = "acme@marnov.cz";
@@ -42,13 +42,14 @@
     services.prosody = {
         xmppComplianceSuite = false;
         enable = true ;
-        virtualHosts."meetone" = {
+        virtualHosts."meet-dev" = {
                 enabled = true;
                 domain = "meet-dev.vpsfree.cz";
                 ssl.key= "${config.security.acme.certs."meet-dev.vpsfree.cz".directory}/key.pem";
                 ssl.cert= "${config.security.acme.certs."meet-dev.vpsfree.cz".directory}/cert.pem";
                 extraConfig = ''
-                authentication = "anonymous";
+                authentication = "anonymous"
+                allow_anonymous_s2s = true
                 '';
             };
             modules.websocket = true;
@@ -62,18 +63,16 @@
             smacks_max_old_sessions = 1;
             '';
     };
-    # jistsi videobridge
-    services.jitsi-videobridge = {
-    openFirewall = true ;
-    } ;
-
     # jitsi
     services.jitsi-meet = {
         enable = true;
         hostName = "meet-dev.vpsfree.cz";
         nginx.enable = true;
         prosody.enable = true;
-        config = {
+        videobridge.enable = false;
+        videobridge.passwordFile = "/var/lib/jitsi-meet/videobridge-secret";
+
+               config = {
         websocket = wss://meet-dev.vpsfree.cz/xmpp-websocket;
         };
     };

@@ -3,8 +3,9 @@
   cluster."meet-dev" = {
     spin = "nixos";
     swpins.channels = [ "nixos-stable" "vpsadminos-master" ];
-        host = {
+    host = {
         target = "37.205.14.113";
-  };
+    };
+        tags = [ "meet-mvb" ] ;
   };
 }
