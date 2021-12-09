@@ -27,7 +27,7 @@
             userName = "jvb";
             mucNickname = "meet2";
             disableCertificateVerification = true;
-            passwordFile = "/var/lib/jitsi-meet/videobridge-secret";
+            passwordFile = "/secrets/jitsi-meet/videobridge-secret";
             mucJids = "jvbbrewery@internal.meet-dev.vpsfree.cz";
         };
         openFirewall = true;

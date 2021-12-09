@@ -72,7 +72,7 @@
         nginx.enable = true;
         prosody.enable = true;
         videobridge.enable = false;
-        videobridge.passwordFile = "/var/lib/jitsi-meet/videobridge-secret";
+        videobridge.passwordFile = "/secrets/jitsi-meet/videobridge-secret";
 
                config = {
         websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
