@@ -69,22 +69,76 @@
     services.jitsi-meet = {
         enable = true;
         hostName = "meet-dev.vpsfree.cz";
+
         nginx.enable = true;
         prosody.enable = true;
         videobridge.enable = false;
         videobridge.passwordFile = "/secrets/jitsi-meet/videobridge-secret";
+        interfaceConfig = {
+                DEFAULT_BACKGROUND = "#474747";
+                DISABLE_VIDEO_BACKGROUND = false;
+                INITIAL_TOOLBAR_TIMEOUT = 20000;
+                TOOLBAR_TIMEOUT = 4000;
+                TOOLBAR_ALWAYS_VISIBLE = false;
+                DEFAULT_REMOTE_DISPLAY_NAME = "Fellow Jitster";
+                DEFAULT_LOCAL_DISPLAY_NAME = "me";
+                SHOW_JITSI_WATERMARK = true;
+                JITSI_WATERMARK_LINK = "https://kb.vpsfree.cz/navody/meet";
 
-               config = {
-        websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
-        openBridgeChannel = "websocket";
-        defaultLanguage = "cs";
-        etherpad_base = "https://pad.vpsfree.cz/p/";
+                SHOW_WATERMARK_FOR_GUESTS = true;
+                SHOW_BRAND_WATERMARK = false;
+                BRAND_WATERMARK_LINK = "";
+                SHOW_POWERED_BY = false;
+                SHOW_DEEP_LINKING_IMAGE = false;
+                GENERATE_ROOMNAMES_ON_WELCOME_PAGE = true;
+                DISPLAY_WELCOME_PAGE_CONTENT = true;
+                DISPLAY_WELCOME_PAGE_TOOLBAR_ADDITIONAL_CONTENT = false;
+                APP_NAME = "Meet.vpsFree.cz";
+                NATIVE_APP_NAME = "Jitsi Meet";
+                PROVIDER_NAME = "vpsFree.cz";
+                LANG_DETECTION = false;
+                INVITATION_POWERED_BY = true;
+                TOOLBAR_BUTTONS =  [
+        "microphone" "camera" "closedcaptions" "desktop" "fullscreen"
+        "fodeviceselection" "hangup" "profile" "info" "chat" "recording"
+        "livestreaming" "etherpad" "sharedvideo" "settings" "raisehand"
+        "videoquality" "filmstrip" "invite" "feedback" "stats" "shortcuts"
+        "tileview" "videobackgroundblur" "download" "help"  ];
+                SETTINGS_SECTIONS = [ "devices" "language" "moderator" "profile" "calendar" ];
+                VIDEO_LAYOUT_FIT = "both";
+                filmStripOnly = false;
+                CLOSE_PAGE_GUEST_HINT = false;
+                RANDOM_AVATAR_URL_PREFIX = false;
+                RANDOM_AVATAR_URL_SUFFIX = false;
+                FILM_STRIP_MAX_HEIGHT = 120;
+                ENABLE_FEEDBACK_ANIMATION = false;
+                DISABLE_FOCUS_INDICATOR = false;
+                DISABLE_DOMINANT_SPEAKER_INDICATOR = false;
+                DISABLE_TRANSCRIPTION_SUBTITLES = false;
 
-            p2p = {
-           enabled = false;
-            };
-
+                DISABLE_RINGING = false;
+                AUDIO_LEVEL_PRIMARY_COLOR = "rgba(255,255,255,0.4)";
+                AUDIO_LEVEL_SECONDARY_COLOR = "rgba(255,255,255,0.2)";
+                POLICY_LOGO = null;
+                LOCAL_THUMBNAIL_RATIO = "16 / 9";
+                REMOTE_THUMBNAIL_RATIO = 1;
+                LIVE_STREAMING_HELP_LINK = "https://jitsi.org/live";
+                MOBILE_APP_PROMO = true;
         };
+
+        config = {
+            websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
+            openBridgeChannel = "websocket";
+            defaultLanguage = "cs";
+            etherpad_base = "https://pad.vpsfree.cz/p/";
+            p2p = {
+               enabled = false;
+                };
+            e2eping = {
+            pingInterval = 1000;
+            analyticsInterval = 5000;
+                    };
+            };
     };
 # FW
 networking.firewall.allowedTCPPorts = [ 80 443 5280 5281] ;
