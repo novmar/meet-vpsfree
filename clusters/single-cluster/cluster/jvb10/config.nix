@@ -15,6 +15,7 @@
 
   # ... standard NixOS configuration ...
     networking.firewall.enable = false;
+        services.prometheus.exporters.jitsi.enable = true;
     services.jitsi-videobridge = {
         enable = true;
         xmppConfigs."meet-dev.vpsfree.cz" = {
