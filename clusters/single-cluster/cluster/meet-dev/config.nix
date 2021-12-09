@@ -84,6 +84,8 @@
                 DEFAULT_LOCAL_DISPLAY_NAME = "me";
                 SHOW_JITSI_WATERMARK = true;
                 JITSI_WATERMARK_LINK = "https://kb.vpsfree.cz/navody/meet";
+                DEFAULT_LOGO_URL = "https://meet.vpsfree.cz/images/watermark-vpsf.png";
+                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://meet.vpsfree.cz/images/watermark-vpsf.png";
 
                 SHOW_WATERMARK_FOR_GUESTS = true;
                 SHOW_BRAND_WATERMARK = false;
@@ -100,7 +102,7 @@
                 INVITATION_POWERED_BY = true;
                 TOOLBAR_BUTTONS =  [
         "microphone" "camera" "closedcaptions" "desktop" "fullscreen"
-        "fodeviceselection" "hangup" "profile" "info" "chat" "recording"
+        "fodeviceselection" "hangup" "profile" "info" "chat"
         "livestreaming" "etherpad" "sharedvideo" "settings" "raisehand"
         "videoquality" "filmstrip" "invite" "feedback" "stats" "shortcuts"
         "tileview" "videobackgroundblur" "download" "help"  ];
@@ -124,9 +126,11 @@
                 REMOTE_THUMBNAIL_RATIO = 1;
                 LIVE_STREAMING_HELP_LINK = "https://jitsi.org/live";
                 MOBILE_APP_PROMO = true;
+            premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
         };
 
         config = {
+            premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
             websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
