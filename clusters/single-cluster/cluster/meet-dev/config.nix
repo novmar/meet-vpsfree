@@ -15,7 +15,7 @@
   # ... standard NixOS configuration ...
 
   networking.firewall.enable = false;
-
+  services.prometheus.exporters.jitsi.enable = true;
   security.acme.acceptTerms = true ;
   security.acme.email = "acme@marnov.cz";
 
@@ -73,7 +73,15 @@
         videobridge.passwordFile = "/var/lib/jitsi-meet/videobridge-secret";
 
                config = {
-        websocket = wss://meet-dev.vpsfree.cz/xmpp-websocket;
+        websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
+        openBridgeChannel = "websocket";
+        defaultLanguage = "cs";
+        etherpad_base = "https://pad.vpsfree.cz/p/";
+
+            p2p = {
+           enabled = false;
+            };
+
         };
     };
 # FW
