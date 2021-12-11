@@ -2,7 +2,6 @@
 let
   nixpkgsBranch = branch: {
     type = "git-rev";
-
     git-rev = {
       url = "https://github.com/NixOS/nixpkgs";
       update.ref = "refs/heads/${branch}";
@@ -10,7 +9,6 @@ let
   };
  novmarBranch = branch: {
   type = "git-rev";
-
   git-rev = {
     url = "https://github.com/novmar/nixpkgs";
     update.ref = "refs/heads/${branch}";
@@ -18,7 +16,6 @@ let
   };
   vpsadminosBranch = branch: {
     type = "git-rev";
-
     git-rev = {
       url = "https://github.com/vpsfreecz/vpsadminos";
       update.ref = "refs/heads/${branch}";
