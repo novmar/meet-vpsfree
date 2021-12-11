@@ -21,14 +21,14 @@
     services.jitsi-videobridge = {
         apis = [ "colibri" "rest" ] ;
         enable = true;
-        xmppConfigs."meet-dev.vpsfree.cz" = {
-            domain = "auth.meet-dev.vpsfree.cz";
-            hostName = "meet-dev.vpsfree.cz";
+        xmppConfigs."meet-vpsfree.vpsfree.cz" = {
+            domain = "auth.meet-vpsfree.vpsfree.cz";
+            hostName = "meet-vpsfree.vpsfree.cz";
             userName = "jvb";
             mucNickname = "meet4";
             disableCertificateVerification = true;
             passwordFile = "/secrets/jitsi-meet/videobridge-secret";
-            mucJids = "jvbbrewery@internal.meet-dev.vpsfree.cz";
+            mucJids = "jvbbrewery@internal.meet-vpsfree.vpsfree.cz";
         };
         openFirewall = true;
     };

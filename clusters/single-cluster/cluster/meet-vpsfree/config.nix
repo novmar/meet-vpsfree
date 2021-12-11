@@ -23,10 +23,10 @@
 
     # nginx
     services.nginx.recommendedProxySettings = true;
-    services.nginx.virtualHosts."meet-dev.vpsfree.cz" = {
+    services.nginx.virtualHosts."meet-vpsfree.vpsfree.cz" = {
         locations = {
             "=/xmpp-websocket" = {
-                proxyPass = "http://meet-dev.vpsfree.cz:5280/xmpp-websocket";
+                proxyPass = "http://meet-vpsfree.vpsfree.cz:5280/xmpp-websocket";
                 proxyWebsockets = true ;
                 extraConfig = ''
                 proxy_read_timeout 900s;
@@ -44,11 +44,11 @@
     services.prosody = {
         xmppComplianceSuite = false;
         enable = true ;
-        virtualHosts."meet-dev" = {
+        virtualHosts."meet-vpsfree" = {
                 enabled = true;
-                domain = "meet-dev.vpsfree.cz";
-                ssl.key= "${config.security.acme.certs."meet-dev.vpsfree.cz".directory}/key.pem";
-                ssl.cert= "${config.security.acme.certs."meet-dev.vpsfree.cz".directory}/cert.pem";
+                domain = "meet-vpsfree.vpsfree.cz";
+                ssl.key= "${config.security.acme.certs."meet-vpsfree.vpsfree.cz".directory}/key.pem";
+                ssl.cert= "${config.security.acme.certs."meet-vpsfree.vpsfree.cz".directory}/cert.pem";
                 extraConfig = ''
                 authentication = "anonymous"
                 allow_anonymous_s2s = true
@@ -68,10 +68,12 @@
     # jitsi
     services.jitsi-meet = {
         enable = true;
-        hostName = "meet-dev.vpsfree.cz";
+        hostName = "meet-vpsfree.vpsfree.cz";
 
         nginx.enable = true;
         prosody.enable = true;
+        prosody.allowners_muc = true;
+        prosody.withOwnerAllowKickPatch = true;
         videobridge.enable = false;
         videobridge.passwordFile = "/secrets/jitsi-meet/videobridge-secret";
         interfaceConfig = {
@@ -131,7 +133,7 @@
 
         config = {
             premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
-            websocket = "wss://meet-dev.vpsfree.cz/xmpp-websocket";
+            websocket = "wss://meet-vpsfree.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
             etherpad_base = "https://pad.vpsfree.cz/p/";

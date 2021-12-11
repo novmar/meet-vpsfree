@@ -12,5 +12,5 @@
   ./jvb8/module.nix
   ./jvb9/module.nix
   ./master0/module.nix
-  ./meet-dev/module.nix
+  ./meet-vpsfree/module.nix
 ]
