@@ -6,6 +6,6 @@
     host = {
         target = "37.205.14.138";
       };
-        tags = [ "meet-mvb" ] ;
+        tags = [ "meet-mvb" "meet-nixos" ] ;
   };
 }
