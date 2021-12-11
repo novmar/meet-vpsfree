@@ -11,22 +11,22 @@
       "url": "https://github.com/novmar/nixpkgs"
     },
     "state": {
-      "rev": "57e9ac8914f115006817db81e72accde7b9c05cb",
-      "date": "2021-12-11T16:55:01+01:00"
+      "rev": "e63013fe19bb580ffcba0e3e7aaa67dfcb91f207",
+      "date": "2021-12-11T18:30:30+01:00"
     },
     "info": {
-      "rev": "57e9ac8914f115006817db81e72accde7b9c05cb",
-      "sha256": "1b06k2p3421laxkw4047ms22m6f1nd4kbdz39dmand8pjh23f6f4"
+      "rev": "e63013fe19bb580ffcba0e3e7aaa67dfcb91f207",
+      "sha256": "0ij9ycqh6birpn3pszk0254p6dddgxrplgw6m18ydxbaf2rj4d7z"
     },
     "fetcher": {
       "type": "git-rev",
       "options": {
-        "rev": "57e9ac8914f115006817db81e72accde7b9c05cb",
+        "rev": "e63013fe19bb580ffcba0e3e7aaa67dfcb91f207",
         "wrapped_fetcher": {
           "type": "zip",
           "options": {
-            "url": "https://github.com/novmar/nixpkgs/archive/57e9ac8914f115006817db81e72accde7b9c05cb.tar.gz",
-            "sha256": "1b06k2p3421laxkw4047ms22m6f1nd4kbdz39dmand8pjh23f6f4"
+            "url": "https://github.com/novmar/nixpkgs/archive/e63013fe19bb580ffcba0e3e7aaa67dfcb91f207.tar.gz",
+            "sha256": "0ij9ycqh6birpn3pszk0254p6dddgxrplgw6m18ydxbaf2rj4d7z"
           }
         }
       }

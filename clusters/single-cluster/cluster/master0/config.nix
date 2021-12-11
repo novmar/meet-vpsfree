@@ -78,6 +78,7 @@
         nginx.enable = true;
         prosody.enable = true;
         prosody.allowners_muc = true;
+        prosody.withOwnerAllowKickPatch = true;
         config = {
         websocket = wss://meetone.macabara.cz/xmpp-websocket;
         };

@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-
 let
   cfg = config.services.jitsi-meet;
 
@@ -169,6 +168,14 @@ in
         off if you want to configure it manually.
       '';
     };
+    prosody.withOwnerAllowKickPatch = mkOption 
+    {
+      type = bool;
+      default = false ;
+      description = ''
+       Patch prosody wit muc_owner_allow_kick.patch 
+        '';
+      };
     prosody.allowners_muc  = mkOption {
       type = bool;
       default = false;
@@ -183,7 +190,18 @@ in
   config = mkIf cfg.enable {
     services.prosody = mkIf cfg.prosody.enable {
       enable = mkDefault true;
-      xmppComplianceSuite = mkDefault false;
+
+      package = pkgs.prosody.override {
+        withOwnerAllowKickPatch = true; 
+        };
+        
+#       package = mkIf cfg.prosody.withOwnerAllowKickPatch { pkgs.prosody.override { 
+#            withOwnerAllowKickPatch = true ;
+#            };
+#         };
+
+
+    xmppComplianceSuite = mkDefault false;
       modules = {
         admin_adhoc = mkDefault false;
         bosh = mkDefault true;
