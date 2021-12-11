@@ -1,9 +1,13 @@
 { config, pkgs, lib, ... }:
 {
+  disabledModules = [ "services/web-apps/jitsi-meet.nix" "services/networking/prosody.nix"];
   imports = [
     ../../environments/base.nix
-        <vpsadminos/os/lib/nixos-container/vpsadminos.nix>
+     <vpsadminos/os/lib/nixos-container/vpsadminos.nix>
+    ../../modules/services/web-apps/jitsi-meet.nix
+    ../../modules/services/networking/prosody.nix
   ];
+
   networking.hostName = "meet";
   networking.useDHCP = false;
 
@@ -73,6 +77,7 @@
         hostName = "meetone.macabara.cz";
         nginx.enable = true;
         prosody.enable = true;
+        prosody.allowners_muc = true;
         config = {
         websocket = wss://meetone.macabara.cz/xmpp-websocket;
         };

@@ -8,7 +8,14 @@ let
       update.ref = "refs/heads/${branch}";
     };
   };
+ novmarBranch = branch: {
+  type = "git-rev";
 
+  git-rev = {
+    url = "https://github.com/novmar/nixpkgs";
+    update.ref = "refs/heads/${branch}";
+    };
+  };
   vpsadminosBranch = branch: {
     type = "git-rev";
 
@@ -22,5 +29,6 @@ in {
     nixos-unstable = { nixpkgs = nixpkgsBranch "nixos-unstable"; };
     nixos-stable = { nixpkgs = nixpkgsBranch "nixos-21.11"; };
     vpsadminos-master = { vpsadminos = vpsadminosBranch "master"; };
+    novmar-meet = { nixpkgs = novmarBranch "meet"; };
   };
 }
