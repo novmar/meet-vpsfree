@@ -23,10 +23,11 @@
 
     # nginx
     services.nginx.recommendedProxySettings = true;
-    services.nginx.virtualHosts."meet-nixos.vpsfree.cz" = {
+    services.nginx.virtualHosts."meet.vpsfree.cz" = {
+        enableACME = true;
         locations = {
             "=/xmpp-websocket" = {
-                proxyPass = "http://meet-nixos.vpsfree.cz:5280/xmpp-websocket";
+                proxyPass = "http://meet.vpsfree.cz:5280/xmpp-websocket";
                 proxyWebsockets = true ;
                 extraConfig = ''
                 proxy_read_timeout 900s;
@@ -44,11 +45,11 @@
     services.prosody = {
         xmppComplianceSuite = false;
         enable = true ;
-        virtualHosts."meet-nixos" = {
+        virtualHosts."meet" = {
                 enabled = true;
-                domain = "meet-nixos.vpsfree.cz";
-                ssl.key= "${config.security.acme.certs."meet-nixos.vpsfree.cz".directory}/key.pem";
-                ssl.cert= "${config.security.acme.certs."meet-nixos.vpsfree.cz".directory}/cert.pem";
+                domain = "meet.vpsfree.cz";
+                ssl.key= "${config.security.acme.certs."meet.vpsfree.cz".directory}/key.pem";
+                ssl.cert= "${config.security.acme.certs."meet.vpsfree.cz".directory}/cert.pem";
                 extraConfig = ''
                 authentication = "anonymous"
                 allow_anonymous_s2s = true
@@ -68,7 +69,7 @@
     # jitsi
     services.jitsi-meet = {
         enable = true;
-        hostName = "meet-nixos.vpsfree.cz";
+        hostName = "meet-dev.vpsfree.cz";
 
         nginx.enable = true;
         prosody.enable = true;
@@ -133,7 +134,7 @@
 
         config = {
             premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
-            websocket = "wss://meet-nixos.vpsfree.cz/xmpp-websocket";
+            websocket = "wss://meet.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
             etherpad_base = "https://pad.vpsfree.cz/p/";
