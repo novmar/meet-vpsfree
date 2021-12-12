@@ -22,6 +22,12 @@
   security.acme.email = "acme@marnov.cz";
 
     # nginx
+    services.nginx.config = ''
+    worker_processes 30;
+    events {
+  	worker_connections 2048;
+  	}  '';
+
     services.nginx.recommendedProxySettings = true;
     services.nginx.virtualHosts."meet-nixos.vpsfree.cz" = {
         enableACME = true;
