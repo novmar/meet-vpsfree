@@ -23,8 +23,13 @@
 
     # nginx
     services.nginx.recommendedProxySettings = true;
-    services.nginx.virtualHosts."meet.vpsfree.cz" = {
+    services.nginx.virtualHosts."meet-nixos.vpsfree.cz" = {
         enableACME = true;
+        forceSSL = true;
+
+        locations."^~ /image/".root = "/data/nginx/images";
+    };
+    services.nginx.virtualHosts."meet.vpsfree.cz" = {
         locations = {
             "=/xmpp-websocket" = {
                 proxyPass = "http://meet.vpsfree.cz:5280/xmpp-websocket";
@@ -69,7 +74,7 @@
     # jitsi
     services.jitsi-meet = {
         enable = true;
-        hostName = "meet-dev.vpsfree.cz";
+        hostName = "meet.vpsfree.cz";
 
         nginx.enable = true;
         prosody.enable = true;
@@ -87,8 +92,8 @@
                 DEFAULT_LOCAL_DISPLAY_NAME = "me";
                 SHOW_JITSI_WATERMARK = true;
                 JITSI_WATERMARK_LINK = "https://kb.vpsfree.cz/navody/meet";
-                DEFAULT_LOGO_URL = "https://meet.vpsfree.cz/images/watermark-vpsf.png";
-                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://meet.vpsfree.cz/images/watermark-vpsf.png";
+                DEFAULT_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
+                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
 
                 SHOW_WATERMARK_FOR_GUESTS = true;
                 SHOW_BRAND_WATERMARK = false;
@@ -125,15 +130,18 @@
                 AUDIO_LEVEL_PRIMARY_COLOR = "rgba(255,255,255,0.4)";
                 AUDIO_LEVEL_SECONDARY_COLOR = "rgba(255,255,255,0.2)";
                 POLICY_LOGO = null;
-                LOCAL_THUMBNAIL_RATIO = "16 / 9";
+#                LOCAL_THUMBNAIL_RATIO = "16 / 9";
                 REMOTE_THUMBNAIL_RATIO = 1;
                 LIVE_STREAMING_HELP_LINK = "https://jitsi.org/live";
                 MOBILE_APP_PROMO = true;
-            premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
+            premeetingBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
+            welcomePageHeaderBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
+
         };
 
         config = {
-            premeetingBackground = "url(https://vpsfree.cz/obrazky/server.jpg)";
+            premeetingBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
+            welcomePageHeaderBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
             websocket = "wss://meet.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
