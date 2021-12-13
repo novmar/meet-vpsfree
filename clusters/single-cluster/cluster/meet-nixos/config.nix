@@ -16,7 +16,7 @@
 
   networking.firewall.enable = false;
   services.prometheus.exporters.jitsi.enable = true;
-#  services.prometheus.exporters.node.enable  = true;
+  services.prometheus.exporters.node.enable  = true;
 #  services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
   security.acme.acceptTerms = true ;
   security.acme.email = "acme@marnov.cz";

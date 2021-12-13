@@ -7,8 +7,6 @@
         forwardPorts = [
             {
             destination = "${config.cluster."${config.networking.hostName}".host.target}:4443";
-
-
             proto = "tcp" ;
             sourcePort = 443;
             }
@@ -45,10 +43,9 @@
             TCP_HARVESTER_PORT=4443;
             ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS = "${config.cluster."${config.networking.hostName}".host.target}";
             ice.tcp = {
-            enabled = true;
-            port = 4443;
+                enabled = true;
+                port = 4443;
                 };
-
             server-id = config.networking.hostName;
             };
         };
