@@ -16,18 +16,14 @@
 
   networking.firewall.enable = false;
   services.prometheus.exporters.jitsi.enable = true;
-  services.prometheus.exporters.node.enable  = false;
+#  services.prometheus.exporters.node.enable  = true;
 #  services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
   security.acme.acceptTerms = true ;
   security.acme.email = "acme@marnov.cz";
 
     # nginx
-    services.nginx.config = ''
-    worker_processes 30;
-    events {
-  	worker_connections 2048;
-  	}  '';
-
+    services.nginx.appendConfig = '' worker_processes 20; '';
+ 	services.nginx.eventsConfig = '' worker_connections 2048; '' ;
     services.nginx.recommendedProxySettings = true;
     services.nginx.virtualHosts."meet-nixos.vpsfree.cz" = {
         enableACME = true;
