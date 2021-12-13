@@ -13,7 +13,8 @@ T=3
 
 23.04. 4H
 
-11.09.2021 7, prvni deploy funkcni rozbehani multi serveru
-09.12.      6 dolazovani deploye, ruzne upravy serepeticky
-
+08.12.2021 7h , prvni deploy funkcni rozbehani multi serveru
+09.12.     6h dolazovani deploye, ruzne upravy serepeticky
+10.12.   3h  
 11.12 6h  snaha o allowner
+12.12 4h  Snad definitivne hotovo, tcp porty 4443 - 443, uprava configu, .... nginx
