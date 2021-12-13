@@ -19,6 +19,8 @@
        enable = true;
        allowedTCPPorts = [
             443 # for forward to jitsi
+            9700 # port for jitsi-exporter
+            9100 # port for prometheus node-exporter
             ];
     };
 
@@ -33,7 +35,7 @@
 
     services.prometheus.exporters.jitsi.enable = true;
     services.prometheus.exporters.node.enable  = true;
-    services.prometheus.exporters.node.enabledCollectors  = [ "systemd"];
+#    services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
     services.jitsi-videobridge = {
         apis = [ "colibri" "rest" ] ;
         enable = true;
