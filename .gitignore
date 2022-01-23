@@ -1,3 +1,4 @@
 clusters/*/.gems
 clusters/*/.confctl
 clusters/*/swpins/**
+clusters/*/swpins/channels/**
