@@ -7,5 +7,5 @@
         <vpsadminos/os/lib/nixos-container/vpsadminos.nix>
 
   ];
-  networking.hostName = "jvb1";
+  networking.hostName = "jvb2";
 }
