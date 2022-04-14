@@ -2,11 +2,21 @@
 {
     networking.nat.externalInterface = "venet0";
 
+    networking.nat = {
+        enable = true ;
+        forwardPorts = [
+            {
+            destination = "${config.cluster."${config.networking.hostName}".host.target}:4443";
+            proto = "tcp" ;
+            sourcePort = 443;
+            }
+        ];
+
+    };
     networking.firewall =  {
-       enable = false;
+       enable = true;
        allowedTCPPorts = [
             443 # for forward to jitsi
-            5443
             9700 # port for jitsi-exporter
             9100 # port for prometheus node-exporter
             ];
@@ -29,11 +39,12 @@
         enable = true;
         config = {
             videobridge = {
-            TCP_HARVESTER_PORT=443;
+            TCP_HARVESTER_MAPPED_PORT = 443;
+            TCP_HARVESTER_PORT=4443;
             ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS = "${config.cluster."${config.networking.hostName}".host.target}";
             ice.tcp = {
                 enabled = true;
-                port = 443;
+                port = 4443;
                 };
             server-id = config.networking.hostName;
             };

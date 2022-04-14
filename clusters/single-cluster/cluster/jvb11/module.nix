@@ -2,7 +2,7 @@
 {
   cluster."jvb11" = {
     spin = "nixos";
-    swpins.channels = [ "novmar-meet" "vpsadminos-master" ];
+    swpins.channels = [ "novmar-meet" "vpsadminos-staging" ];
     host = {
         target = "37.205.13.90";
       };

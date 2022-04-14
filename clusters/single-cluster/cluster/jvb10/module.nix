@@ -2,10 +2,10 @@
 {
   cluster."jvb10" = {
     spin = "nixos";
-    swpins.channels = [ "novmar-meet" "vpsadminos-master" ];
+    swpins.channels = [ "novmar-meet" "vpsadminos-staging" ];
     host = {
         target = "37.205.14.250";
       };
-        tags = [ "meet-mvb" "meet-nixos" ] ;
+        tags = [ "meet-jvb" "meet-nixos" ] ;
   };
 }

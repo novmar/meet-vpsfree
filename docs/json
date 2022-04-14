@@ -1,0 +1,260 @@
+[
+    {
+        "Id": "e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f",
+        "Created": "2021-06-14T11:07:36.497556272Z",
+        "Path": "/bin/bash",
+        "Args": [
+            "/run.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1472,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-12-09T05:31:21.315167191Z",
+            "FinishedAt": "2021-12-09T06:23:17.853075894Z"
+        },
+        "Image": "sha256:351394781294b557746ccc49fbba83b2f6e6933563ee4f168239a8e87b05e4fc",
+        "ResolvConfPath": "/var/lib/docker/containers/e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f/hostname",
+        "HostsPath": "/var/lib/docker/containers/e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f/hosts",
+        "LogPath": "/var/lib/docker/containers/e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f/e3205b7b86dccc9d46178ed054fc5843df2f09b761675b79bfa045074589f57f-json.log",
+        "Name": "/youtrack",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/var/data/youtrack/conf:/opt/youtrack/conf",
+                "/var/data/youtrack/logs:/opt/youtrack/logs",
+                "/var/data/youtrack/backups:/opt/youtrack/backups",
+                "/var/data/youtrack/data:/opt/youtrack/data"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "8080/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "10800"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "always",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Capabilities": null,
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/c213c8624c2ab210207e39b69e119a09ebe941dce20376867d30d5cc11656079-init/diff:/var/lib/docker/overlay2/1b1f103da1177c6b37b1566cb39a12757610876ca8c733f6cf0528c53853a896/diff:/var/lib/docker/overlay2/c4efdb69fcc1c159f89fd3925507cde9f46575daf821c7c2e914a73323bd7eda/diff:/var/lib/docker/overlay2/d524ea2dace4b07883245116533cb1b878358c750bbe58f2fe0f392cbe909f45/diff:/var/lib/docker/overlay2/9779dcbeab2fa8430ad6ae582a5c5674e67976e7a297a7d9e720a65a4c186b1e/diff:/var/lib/docker/overlay2/a04ae76d0bda798143fa7aa17399fc62c1ed1ce0b192ee816f17c7368dabe3af/diff:/var/lib/docker/overlay2/23437136f95799072b59a43a38a4a8e806125fcf810b4d92adf8caa231dae5ca/diff:/var/lib/docker/overlay2/5ae8234bc3f350637f7a5ef07045b235dab49909c04a9e8953a7c8fb5fdcac20/diff:/var/lib/docker/overlay2/28a8ebf6b12d9ffc156a2e5a3f3591954082272ba9dcfa7e3605125a603773a6/diff",
+                "MergedDir": "/var/lib/docker/overlay2/c213c8624c2ab210207e39b69e119a09ebe941dce20376867d30d5cc11656079/merged",
+                "UpperDir": "/var/lib/docker/overlay2/c213c8624c2ab210207e39b69e119a09ebe941dce20376867d30d5cc11656079/diff",
+                "WorkDir": "/var/lib/docker/overlay2/c213c8624c2ab210207e39b69e119a09ebe941dce20376867d30d5cc11656079/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/var/data/youtrack/data",
+                "Destination": "/opt/youtrack/data",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/var/data/youtrack/logs",
+                "Destination": "/opt/youtrack/logs",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/var/data/youtrack/backups",
+                "Destination": "/opt/youtrack/backups",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/var/data/youtrack/conf",
+                "Destination": "/opt/youtrack/conf",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "e3205b7b86dc",
+            "Domainname": "",
+            "User": "jetbrains",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "JAVA_HOME=/opt/youtrack/internal/java/linux-x64"
+            ],
+            "Cmd": null,
+            "Image": "jetbrains/youtrack:2020.3.11807",
+            "Volumes": {
+                "/opt/youtrack/backups": {},
+                "/opt/youtrack/conf": {},
+                "/opt/youtrack/data": {},
+                "/opt/youtrack/logs": {}
+            },
+            "WorkingDir": "/",
+            "Entrypoint": [
+                "/bin/bash",
+                "/run.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "7f9b25f5ba7fd6015a2ff266e03fea8f2ff062c6c303542eccee9ebab23276cf",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "8080/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "10800"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/7f9b25f5ba7f",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "1b58ded667675e3bded0d91fd0e7062f3138b149dd77725be6cf02bd2c44c6d2",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:03",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "bc1f3bfd2e1bbf96d602fe33c904b90b31225773cfa3925145416460f934c2f8",
+                    "EndpointID": "1b58ded667675e3bded0d91fd0e7062f3138b149dd77725be6cf02bd2c44c6d2",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:03",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]

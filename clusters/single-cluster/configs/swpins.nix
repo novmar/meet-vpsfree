@@ -25,7 +25,8 @@ in {
   confctl.swpins.channels = {
     nixos-unstable = { nixpkgs = nixpkgsBranch "nixos-unstable"; };
     nixos-stable = { nixpkgs = nixpkgsBranch "nixos-21.11"; };
-    vpsadminos-master = { vpsadminos = vpsadminosBranch "master"; };
-    novmar-meet = { nixpkgs = novmarBranch "meet"; };
+    vpsadminos-prod = { vpsadminos = vpsadminosBranch "prod-22.01"; };
+    vpsadminos-staging = { vpsadminos = vpsadminosBranch "staging"; };
+    novmar-meet = { nixpkgs = novmarBranch "meet-new"; };
   };
 }
