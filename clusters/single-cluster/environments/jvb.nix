@@ -46,7 +46,7 @@
             mucNickname = "${config.networking.hostName}";
             disableCertificateVerification = true;
             passwordFile = "/secrets/jitsi-meet/videobridge-secret";
-            mucJids = "jvbbrewery@internal.meet.vpsfree.cz";
+            mucJids = "jvbbrewery@internal.auth.meet.vpsfree.cz";
         };
     };
 
