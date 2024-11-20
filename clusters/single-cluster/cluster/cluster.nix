@@ -11,7 +11,6 @@
   ./jvb7/module.nix
   ./jvb8/module.nix
   ./jvb9/module.nix
-  ./master0/module.nix
   ./meet-nixos/module.nix
   ./test-jvb01/module.nix
   ./test-meet/module.nix
