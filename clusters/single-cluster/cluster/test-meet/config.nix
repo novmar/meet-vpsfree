@@ -2,9 +2,10 @@
 {
   imports = [
     ../../environments/base.nix
+    ../../environments/test.nix
         <vpsadminos/os/lib/nixos-container/vpsadminos.nix>
   ];
-  networking.hostName = "meet";
+  networking.hostName = "test-meet";
   networking.useDHCP = false;
 
   services.resolved.enable = false;
@@ -25,16 +26,16 @@
     services.nginx.appendConfig = '' worker_processes 20; '';
  	services.nginx.eventsConfig = '' worker_connections 2048; '' ;
     services.nginx.recommendedProxySettings = true;
-    services.nginx.virtualHosts."meet-nixos.vpsfree.cz" = {
+    services.nginx.virtualHosts."test-meet-nixos.vpsfree.cz" = {
         enableACME = true;
         forceSSL = true;
 
         locations."^~ /image/".root = "/data/nginx/images";
     };
-    services.nginx.virtualHosts."meet.vpsfree.cz" = {
+    services.nginx.virtualHosts."test-meet.vpsfree.cz" = {
         locations = {
             "=/xmpp-websocket" = {
-                proxyPass = "http://meet.vpsfree.cz:5280/xmpp-websocket";
+                proxyPass = "http://test-meet.vpsfree.cz:5280/xmpp-websocket";
                 proxyWebsockets = true ;
                 extraConfig = ''
                 proxy_read_timeout 900s;
@@ -54,9 +55,9 @@
         enable = true ;
         virtualHosts."meet" = {
                 enabled = true;
-                domain = "meet.vpsfree.cz";
-                ssl.key= "${config.security.acme.certs."meet.vpsfree.cz".directory}/key.pem";
-                ssl.cert= "${config.security.acme.certs."meet.vpsfree.cz".directory}/cert.pem";
+                domain = "test-meet.vpsfree.cz";
+                ssl.key= "${config.security.acme.certs."test-meet.vpsfree.cz".directory}/key.pem";
+                ssl.cert= "${config.security.acme.certs."test-meet.vpsfree.cz".directory}/cert.pem";
                 extraConfig = ''
                 authentication = "anonymous"
                 allow_anonymous_s2s = true
@@ -74,14 +75,14 @@
             '';
     };
     # jitsi
+    services.jitsi-videobridge.openFirewall = true;
     services.jitsi-meet = {
         enable = true;
-        hostName = "meet.vpsfree.cz";
+        hostName = "test-meet.vpsfree.cz";
 
         nginx.enable = true;
         prosody.enable = true;
         prosody.allowners_muc = true;
-        prosody.withOwnerAllowKickPatch = true;
         videobridge.enable = false;
         videobridge.passwordFile = "/secrets/jitsi-meet/videobridge-secret";
         interfaceConfig = {
@@ -94,8 +95,8 @@
                 DEFAULT_LOCAL_DISPLAY_NAME = "me";
                 SHOW_JITSI_WATERMARK = true;
                 JITSI_WATERMARK_LINK = "https://kb.vpsfree.cz/navody/meet";
-                DEFAULT_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
-                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
+                DEFAULT_LOGO_URL = "https://test-meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
+                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://test-meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
 
                 SHOW_WATERMARK_FOR_GUESTS = true;
                 SHOW_BRAND_WATERMARK = false;
@@ -136,15 +137,15 @@
                 REMOTE_THUMBNAIL_RATIO = 1;
                 LIVE_STREAMING_HELP_LINK = "https://jitsi.org/live";
                 MOBILE_APP_PROMO = true;
-            premeetingBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
-            welcomePageHeaderBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
+            premeetingBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
+            welcomePageHeaderBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
 
         };
 
         config = {
-            premeetingBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
-            welcomePageHeaderBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
-            websocket = "wss://meet.vpsfree.cz/xmpp-websocket";
+            premeetingBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
+            welcomePageHeaderBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
+            websocket = "wss://test-meet.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
             etherpad_base = "https://pad.vpsfree.cz/p/";

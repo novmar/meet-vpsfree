@@ -27,6 +27,7 @@ in {
     nixos-stable = { nixpkgs = nixpkgsBranch "nixos-21.11"; };
     vpsadminos-prod = { vpsadminos = vpsadminosBranch "prod-22.01"; };
     vpsadminos-staging = { vpsadminos = vpsadminosBranch "staging"; };
-    novmar-meet = { nixpkgs = novmarBranch "meet-new"; };
+#    novmar-meet = { nixpkgs = novmarBranch "meet-new"; };
+    novmar-meet = { nixpkgs = novmarBranch "meet-actual"; };
   };
 }

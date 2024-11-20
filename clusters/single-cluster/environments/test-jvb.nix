@@ -27,8 +27,8 @@
     services.jitsi-videobridge = {
         openFirewall = true;
         enable = true;
-          colibriRestApi = true;
-          config = {
+           colibriRestApi = true;
+                  config = {
             videobridge = {
             TCP_HARVESTER_PORT=443;
             ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS = "${config.cluster."${config.networking.hostName}".host.target}";
@@ -39,14 +39,14 @@
             server-id = config.networking.hostName;
             };
         };
-        xmppConfigs."meet.vpsfree.cz" = {
-            domain = "auth.meet.vpsfree.cz";
-            hostName = "meet.vpsfree.cz";
+        xmppConfigs."test-meet.vpsfree.cz" = {
+            domain = "auth.test-meet.vpsfree.cz";
+            hostName = "test-meet.vpsfree.cz";
             userName = "jvb";
             mucNickname = "${config.networking.hostName}";
             disableCertificateVerification = true;
             passwordFile = "/secrets/jitsi-meet/videobridge-secret";
-            mucJids = "jvbbrewery@internal.meet.vpsfree.cz";
+            mucJids = "jvbbrewery@internal.auth.test-meet.vpsfree.cz";
         };
     };
 

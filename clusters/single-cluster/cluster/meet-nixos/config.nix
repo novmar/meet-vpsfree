@@ -74,6 +74,7 @@
             '';
     };
     # jitsi
+    services.jitsi-videobridge.openFirewall = true;
     services.jitsi-meet = {
         enable = true;
         hostName = "meet.vpsfree.cz";
@@ -81,7 +82,6 @@
         nginx.enable = true;
         prosody.enable = true;
         prosody.allowners_muc = true;
-        prosody.withOwnerAllowKickPatch = true;
         videobridge.enable = false;
         videobridge.passwordFile = "/secrets/jitsi-meet/videobridge-secret";
         interfaceConfig = {
