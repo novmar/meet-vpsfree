@@ -1,1 +1,1 @@
-import ../../confctl/shell.nix
+import ../confctl/shell.nix
