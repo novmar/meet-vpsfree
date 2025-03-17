@@ -19,7 +19,7 @@
   services.prometheus.exporters.node.enable  = true;
 #  services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
   security.acme.acceptTerms = true ;
-  security.acme.email = "acme@marnov.cz";
+  security.acme.defaults.email = "acme@marnov.cz";
 
     # nginx
     services.nginx.appendConfig = '' worker_processes 20; '';
@@ -74,6 +74,17 @@
             '';
     };
     # jitsi
+  nixpkgs.overlays = [
+    (final: prev: {
+      jitsi-meet = prev.jitsi-meet.overrideAttrs (oldAttrs: {
+        postInstall = (oldAttrs.postInstall or "") + ''
+          sed -i "s|url(../images/welcome-background.png);|url(https://test-meet-nixos.vpsfree.cz/image/server.jpg);|g" $out/css/all.css
+          sed -i "s|width:71px;height:32px|width:140px;height:70px|g" $out/css/all.css
+        '';
+      });
+    })
+  ];
+
     services.jitsi-videobridge.openFirewall = true;
     services.jitsi-meet = {
         enable = true;
@@ -142,8 +153,6 @@
         };
 
         config = {
-            premeetingBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
-            welcomePageHeaderBackground = "url(https://meet-nixos.vpsfree.cz/image/server.jpg)";
             websocket = "wss://meet.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
@@ -159,4 +168,5 @@
     };
 # FW
 networking.firewall.allowedTCPPorts = [ 80 443 5280 5281] ;
+  system.stateVersion = "24.11";
 }

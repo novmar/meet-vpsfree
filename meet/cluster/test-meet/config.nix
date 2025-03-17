@@ -20,7 +20,7 @@
   services.prometheus.exporters.node.enable  = true;
 #  services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
   security.acme.acceptTerms = true ;
-  security.acme.email = "acme@marnov.cz";
+  security.acme.defaults.email = "acme@marnov.cz";
 
     # nginx
     services.nginx.appendConfig = '' worker_processes 20; '';
@@ -75,6 +75,17 @@
             '';
     };
     # jitsi
+  nixpkgs.overlays = [
+    (final: prev: {
+      jitsi-meet = prev.jitsi-meet.overrideAttrs (oldAttrs: {
+        postInstall = (oldAttrs.postInstall or "") + ''
+          sed -i "s|url(../images/welcome-background.png);|url(https://test-meet-nixos.vpsfree.cz/image/server.jpg);|g" $out/css/all.css
+          sed -i "s|width:71px;height:32px|width:140px;height:70px|g" $out/css/all.css
+        '';
+      });
+    })
+  ];
+
     services.jitsi-videobridge.openFirewall = true;
     services.jitsi-meet = {
         enable = true;
@@ -95,8 +106,8 @@
                 DEFAULT_LOCAL_DISPLAY_NAME = "me";
                 SHOW_JITSI_WATERMARK = true;
                 JITSI_WATERMARK_LINK = "https://kb.vpsfree.cz/navody/meet";
-                DEFAULT_LOGO_URL = "https://test-meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
-                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://test-meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
+                DEFAULT_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
+                DEFAULT_WELCOME_PAGE_LOGO_URL = "https://meet-nixos.vpsfree.cz/image/watermark-vpsf.png";
 
                 SHOW_WATERMARK_FOR_GUESTS = true;
                 SHOW_BRAND_WATERMARK = false;
@@ -137,14 +148,10 @@
                 REMOTE_THUMBNAIL_RATIO = 1;
                 LIVE_STREAMING_HELP_LINK = "https://jitsi.org/live";
                 MOBILE_APP_PROMO = true;
-            premeetingBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
-            welcomePageHeaderBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
 
         };
 
         config = {
-            premeetingBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
-            welcomePageHeaderBackground = "url(https://test-meet-nixos.vpsfree.cz/image/server.jpg)";
             websocket = "wss://test-meet.vpsfree.cz/xmpp-websocket";
             openBridgeChannel = "websocket";
             defaultLanguage = "cs";
@@ -160,4 +167,5 @@
     };
 # FW
 networking.firewall.allowedTCPPorts = [ 80 443 5280 5281] ;
+  system.stateVersion = "23.11";
 }
