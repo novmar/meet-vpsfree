@@ -1,0 +1,79 @@
+{
+  "date": "2025-03-26T21:16:22+01:00",
+  "toplevel": "/nix/store/ghapma3wsq3wmjp9509hb82v9k14sm6x-nixos-system-test-meet-25.05.git.5d743245f",
+  "auto_rollback": "/nix/store/xbhmgqgxjw31k4izyi37b9xm8bg5hays-auto-rollback.rb",
+  "swpins": {
+    "nixpkgs": {
+      "path": "/nix/store/cffnay4h54b2qh8846h32lix9hafzhpw-git-5d743245f",
+      "spec": {
+        "type": "git-rev",
+        "nix_options": {
+          "fetchSubmodules": false,
+          "update": {
+            "auto": false,
+            "interval": 3600,
+            "ref": "refs/heads/meet-actual"
+          },
+          "url": "https://github.com/novmar/nixpkgs"
+        },
+        "state": {
+          "rev": "5d743245f49871b432f1198eac67ecec88bddf27",
+          "date": "2025-03-22T22:34:56+01:00"
+        },
+        "info": {
+          "rev": "5d743245f49871b432f1198eac67ecec88bddf27",
+          "sha256": "0fjhl45h9wcg6kr12qz918nzcgccgp3h59jphcnwqclyzia0im95"
+        },
+        "fetcher": {
+          "type": "git-rev",
+          "options": {
+            "rev": "5d743245f49871b432f1198eac67ecec88bddf27",
+            "wrapped_fetcher": {
+              "type": "zip",
+              "options": {
+                "url": "https://github.com/novmar/nixpkgs/archive/5d743245f49871b432f1198eac67ecec88bddf27.tar.gz",
+                "sha256": "0fjhl45h9wcg6kr12qz918nzcgccgp3h59jphcnwqclyzia0im95"
+              }
+            }
+          }
+        }
+      }
+    },
+    "vpsadminos": {
+      "path": "/nix/store/khlmgcpcwjbp49lmdp3wshyk3p7yjmnp-git-14da38b9a",
+      "spec": {
+        "type": "git-rev",
+        "nix_options": {
+          "fetchSubmodules": false,
+          "update": {
+            "auto": false,
+            "interval": 3600,
+            "ref": "refs/heads/staging"
+          },
+          "url": "https://github.com/vpsfreecz/vpsadminos"
+        },
+        "state": {
+          "rev": "14da38b9a49bf156e06f20ed02533a0549e6d487",
+          "date": "2025-03-22T22:34:59+01:00"
+        },
+        "info": {
+          "rev": "14da38b9a49bf156e06f20ed02533a0549e6d487",
+          "sha256": "18fxi060s7qsklwm3iq2mrmcl3v3x06iazwq3zllkkd955d5yf0h"
+        },
+        "fetcher": {
+          "type": "git-rev",
+          "options": {
+            "rev": "14da38b9a49bf156e06f20ed02533a0549e6d487",
+            "wrapped_fetcher": {
+              "type": "zip",
+              "options": {
+                "url": "https://github.com/vpsfreecz/vpsadminos/archive/14da38b9a49bf156e06f20ed02533a0549e6d487.tar.gz",
+                "sha256": "18fxi060s7qsklwm3iq2mrmcl3v3x06iazwq3zllkkd955d5yf0h"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

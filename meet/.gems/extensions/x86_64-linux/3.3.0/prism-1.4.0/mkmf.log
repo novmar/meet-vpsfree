@@ -1,0 +1,39 @@
+find_header: checking for prism.h in /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/prism-1.4.0/include... -------------------- no
+
+LD_LIBRARY_PATH=.:/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib "gcc -o conftest -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/x86_64-linux -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/ruby/backward -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0 -I.    -O3 -fPIC conftest.c  -L. -L/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib -Wl,-rpath,/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed     -Wl,-rpath,/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib -L/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib -lruby-3.3.6  -lm -lpthread  -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+LD_LIBRARY_PATH=.:/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib "gcc -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/x86_64-linux -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/ruby/backward -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0 -I.    -O3 -fPIC   -c conftest.c"
+conftest.c:3:10: fatal error: prism.h: No such file or directory
+    3 | #include <prism.h>
+      |          ^~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <prism.h>
+/* end */
+
+LD_LIBRARY_PATH=.:/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/lib "gcc -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/x86_64-linux -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0/ruby/backward -I/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/include/ruby-3.3.0 -I.    -O3 -fPIC  -I/home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/prism-1.4.0/include -c conftest.c"
+conftest.c:3:10: fatal error: prism.h: No such file or directory
+    3 | #include <prism.h>
+      |          ^~~~~~~~~
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <prism.h>
+/* end */
+
+--------------------
+

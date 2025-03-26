@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+=begin =======================================================================
+
+# BINMAN 1                        2016-02-28                            5.1.0
+
+## NAME
+
+binman - deprecated; use binman-* instead
+
+## SYNOPSIS
+
+`binman` [*OPTION*]... *COMMAND*
+
+## DESCRIPTION
+
+Runs the fellow "`binman`-*COMMAND*" programs listed under "Commands" below.
+
+> Note: This program is deprecated for removal in the next major version. To
+> prepare yourself, please run the fellow binman-* programs directly instead.
+
+## OPTIONS
+
+`-h` [*PATTERN*], `--help` [*PATTERN*]
+  Show this help manual and optionally search for *PATTERN* regular expression.
+
+## COMMANDS
+
+`text` ...
+  Runs binman-text(1).
+
+`roff` ...
+  Runs binman-roff(1).
+
+`html` ...
+  Runs binman-html(1).
+
+`show` ...
+  Runs binman-show(1).
+
+`help` ...
+  Runs binman-help(1).
+
+## SEE ALSO
+
+binman-rake(1)
+
+=end =========================================================================
+
+require 'binman'
+
+command, source = ARGV
+
+if command == 'help'
+  BinMan.help source, ARGV[2..-1]
+  exit 111
+else
+  BinMan.help
+  source ||= STDIN
+  case command
+  when 'show'
+    BinMan.send(command, source)
+  when 'text', 'roff', 'html'
+    puts BinMan.send(command, source)
+  else
+    warn 'binman: invalid command; try --help'
+    exit 1
+  end
+end

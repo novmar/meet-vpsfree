@@ -1,0 +1,88 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css');
+
+@media all {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1em;
+  }
+
+  /* deactivate external manual page cross-references */
+  a.md2man-reference:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@media screen {
+  body {
+    font-family: monospace;
+    text-align: justify;
+    max-width: 83ch; /* 80 chars, +3 for Bootstrap CSS */
+    margin: auto;
+  }
+
+  h1:first-child {
+    margin-top: -5em;
+    font-weight: normal;
+    font-size: smaller;
+    text-align: center;
+  }
+
+  h1:first-child > span.md2man-source {
+    float: right;
+  }
+
+  h1:first-child > span.md2man-title,
+  h1:first-child > span.md2man-section,
+  h1:first-child > span.md2man-manual,
+  h1:first-child > a.md2man-permalink {
+    display: none;
+  }
+
+  a.md2man-permalink {
+    float: left;
+    margin-left: -1em;
+    opacity: 0.25;
+    font-size: xx-large;
+  }
+
+  a.md2man-permalink:before {
+    content: '\2605'; /* &starf; */
+  }
+
+  a.md2man-permalink:hover,
+  *:target > a.md2man-permalink {
+    opacity: inherit;
+  }
+
+  *:target > a.md2man-permalink {
+    color: red;
+  }
+}
+
+@media print {
+  .navbar:first-child {
+    display: none;
+  }
+
+  /* improve readability of revealed hyperlink URLs */
+  a:after {
+    font-family: monospace;
+  }
+
+  /* internal links and manual page cross-references */
+  a[href^='#'], a[href^='../man'] {
+    color: inherit;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
+  /* undo bootstrap's revealing of those hyperlinks */
+  a[href^='#']:after, a[href^='../man']:after {
+    content: none;
+  }
+}

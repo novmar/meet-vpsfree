@@ -32,8 +32,13 @@
         locations."^~ /image/".root = "/data/nginx/images";
     };
     services.nginx.virtualHosts."meet.vpsfree.cz" = {
-        locations = {
-            "=/xmpp-websocket" = {
+      locations = {
+        "~ ^/([^/?&:'\"]+)/(.*)$" = {
+        extraConfig = ''
+        try_files $uri @root_path;
+        '';
+      };
+        "=/xmpp-websocket" = {
                 proxyPass = "http://meet.vpsfree.cz:5280/xmpp-websocket";
                 proxyWebsockets = true ;
                 extraConfig = ''

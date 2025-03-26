@@ -1,0 +1,7 @@
+#!/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/bin/ruby
+ENV['BUNDLE_GEMFILE'] = "/home/novotny/Projects/novmar/meet-vpsfree/confctl/Gemfile"
+
+require 'bundler'
+Bundler.setup
+
+load File.join('/home/novotny/Projects/novmar/meet-vpsfree/confctl', 'bin/confctl')

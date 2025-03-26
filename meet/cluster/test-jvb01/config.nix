@@ -9,4 +9,5 @@
 
   ];
   networking.hostName = "test-jvb01";
+  system.stateVersion = "24.11";
 }

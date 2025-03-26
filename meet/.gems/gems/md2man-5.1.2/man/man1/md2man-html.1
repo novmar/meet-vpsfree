@@ -1,0 +1,86 @@
+.TH MD2MAN\-HTML 1                   2018\-02\-04                            5.1.2
+.SH NAME
+.PP
+md2man\-html \- convert 
+.BR md2man (5) 
+flavored Markdown \[la]http://daringfireball.net/projects/markdown/syntax\[ra] text into HTML
+.SH SYNOPSIS
+.PP
+\fB\fCmd2man\-html\fR [\fIOPTION\fP]... [\fIFILE\fP]
+.SH DESCRIPTION
+.PP
+This program converts the 
+.BR md2man (5) 
+flavored Markdown \[la]http://daringfireball.net/projects/markdown/syntax\[ra] text from the given
+\fIFILE\fP into HTML and then prints the result to the standard output stream.
+If \fIFILE\fP is not given, then the standard input stream is read in its place.
+.SS Top\-level headings
+.PP
+Each component of the \fB\fC\&.TH\fR directive in 
+.BR roff (7), 
+described under "Top\-level
+headings" in 
+.BR md2man (5), 
+is wrapped in stylable \fB\fC<span>\fR elements as follows:
+.PP
+.RS
+.nf
+<span class="md2man\-title">...</span>
+<span class="md2man\-section">...</span>
+<span class="md2man\-date">...</span>
+<span class="md2man\-source">...</span>
+<span class="md2man\-manual">...</span>
+.fi
+.RE
+.SS Heading permalinks
+.PP
+Self\-referencing hyperlinks (for permanent linking) are added to headings by
+converting their labels into URI fragments that are unique (using a counter),
+lowercase, and squeezed and stripped of HTML tags and non\-word characters.
+.PP
+For example, a heading labeled \fB\fCVer<s>iON 3(2</s>!4)))\fR would be emitted as:
+.PP
+.RS
+.nf
+<h2 id="ver\-ion\-3\-2\-4">Ver<s>iON 3(2</s>!4)))<a name="ver\-ion\-3\-2\-4"
+href="#ver\-ion\-3\-2\-4" class="md2man\-permalink" title="permalink"></a></h2>
+.fi
+.RE
+.PP
+For example, multiple headings labeled \fB\fCHello, world!\fR would be emitted as:
+.PP
+.RS
+.nf
+<h2 id="hello\-world">Hello, world!<a name="hello\-world"
+href="#hello\-world" class="md2man\-permalink" title="permalink"></a></h2>
+
+<h2 id="hello\-world\-1">Hello, world!<a name="hello\-world\-1"
+href="#hello\-world\-1" class="md2man\-permalink" title="permalink"></a></h2>
+
+<h2 id="hello\-world\-2">Hello, world!<a name="hello\-world\-2"
+href="#hello\-world\-2" class="md2man\-permalink" title="permalink"></a></h2>
+.fi
+.RE
+.SS Cross references
+.PP
+Cross references to manual pages are emitted as HTML hyperlinks that have
+\fB\fCclass="md2man\-reference"\fR and \fB\fChref="../man$SECTION/$PAGE.$SECTION.html"\fR
+attributes.
+.PP
+For example, the \fB\fCprintf(3)\fR cross reference would be emitted as this HTML:
+.PP
+.RS
+.nf
+<a class="md2man\-reference" href="../man3/printf.3.html">printf(3)</a>
+.fi
+.RE
+.SH OPTIONS
+.TP
+\fB\fC\-h\fR [\fIPATTERN\fP], \fB\fC\-\-help\fR [\fIPATTERN\fP]
+Show this help manual and optionally search for \fIPATTERN\fP regular expression.
+.SH SEE ALSO
+.PP
+.BR md2man-roff (1), 
+.BR md2man-rake (1), 
+.BR md2man (5), 
+Markdown \[la]http://daringfireball.net/projects/markdown/syntax\[ra]

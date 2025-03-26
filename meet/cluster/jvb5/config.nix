@@ -8,4 +8,5 @@
 
   ];
   networking.hostName = "jvb5";
+  system.stateVersion = "24.11";
 }

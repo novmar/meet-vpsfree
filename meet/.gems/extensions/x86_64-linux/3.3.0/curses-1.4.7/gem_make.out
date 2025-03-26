@@ -1,0 +1,100 @@
+current directory: /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/curses-1.4.7/ext/curses
+/nix/store/4v2y8rp37y4cigqa8s2y6gnk5zkmkfdd-ruby-3.3.6/bin/ruby extconf.rb
+checking for tgetent() in -ltinfow... no
+checking for tgetent() in -ltinfo... yes
+checking for ncursesw/curses.h... yes
+checking for initscr() in -lncursesw... yes
+header: ncursesw/curses.h
+library: ncursesw
+checking for beep()... yes
+checking for bkgd()... yes
+checking for bkgdset()... yes
+checking for curs_set()... yes
+checking for deleteln()... yes
+checking for doupdate()... yes
+checking for flash()... yes
+checking for getbkgd()... yes
+checking for getnstr()... yes
+checking for init()... no
+checking for init in ncursesw/curses.h... no
+checking for isendwin()... yes
+checking for keyname()... yes
+checking for keypad()... yes
+checking for resizeterm()... yes
+checking for scrl()... yes
+checking for set()... no
+checking for set in ncursesw/curses.h... no
+checking for setscrreg()... yes
+checking for ungetch()... yes
+checking for addnwstr()... yes
+checking for wattroff()... yes
+checking for wattron()... yes
+checking for wattrset()... yes
+checking for wbkgd()... yes
+checking for wbkgdset()... yes
+checking for wdeleteln()... yes
+checking for wgetnstr()... yes
+checking for wresize()... yes
+checking for wscrl()... yes
+checking for wsetscrreg()... yes
+checking for werase()... yes
+checking for redrawwin()... yes
+checking for waddnwstr()... yes
+checking for mvderwin()... yes
+checking for derwin()... yes
+checking for touchwin()... yes
+checking for untouchwin()... yes
+checking for wtouchln()... yes
+checking for is_linetouched()... yes
+checking for is_wintouched()... yes
+checking for def_prog_mode()... yes
+checking for reset_prog_mode()... yes
+checking for timeout()... yes
+checking for wtimeout()... yes
+checking for nodelay()... yes
+checking for init_color()... yes
+checking for wcolor_set()... yes
+checking for use_default_colors()... yes
+checking for assume_default_colors()... yes
+checking for newpad()... yes
+checking for unget_wch()... yes
+checking for get_wch()... yes
+checking for wget_wch()... yes
+checking for PDC_get_key_modifiers()... no
+checking for PDC_get_key_modifiers in ncursesw/curses.h... no
+checking for convertible type of chtype... unsigned int
+checking for _XOPEN_SOURCE_EXTENDED... yes
+checking for ESCDELAY in ncursesw/curses.h... yes
+checking for TABSIZE in ncursesw/curses.h... yes
+checking for COLORS in ncursesw/curses.h... yes
+checking for COLOR_PAIRS in ncursesw/curses.h... yes
+checking for function curses_version in ncursesw/curses.h... yes
+checking for variable curses_version in ncursesw/curses.h... no
+checking for ncursesw/menu.h... yes
+checking for new_menu() in -lmenuw... yes
+checking for ncursesw/form.h... yes
+checking for new_form() in -lformw... yes
+checking for form_driver_w()... yes
+checking for sizeof(WINDOW) is available... yes
+checking for sizeof(MEVENT) is available... yes
+checking for sizeof(ITEM) is available... yes
+checking for sizeof(MENU) is available... yes
+checking for sizeof(FIELD) is available... yes
+checking for sizeof(FORM) is available... yes
+creating extconf.h
+creating Makefile
+
+current directory: /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/curses-1.4.7/ext/curses
+make DESTDIR\= sitearchdir\=./.gem.20250313-346074-h70moy sitelibdir\=./.gem.20250313-346074-h70moy clean
+
+current directory: /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/curses-1.4.7/ext/curses
+make DESTDIR\= sitearchdir\=./.gem.20250313-346074-h70moy sitelibdir\=./.gem.20250313-346074-h70moy
+compiling curses.c
+linking shared-object curses.so
+
+current directory: /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/curses-1.4.7/ext/curses
+make DESTDIR\= sitearchdir\=./.gem.20250313-346074-h70moy sitelibdir\=./.gem.20250313-346074-h70moy install
+install -c -p -m 755 curses.so ./.gem.20250313-346074-h70moy
+
+current directory: /home/novotny/Projects/novmar/meet-vpsfree/meet/.gems/gems/curses-1.4.7/ext/curses
+make DESTDIR\= sitearchdir\=./.gem.20250313-346074-h70moy sitelibdir\=./.gem.20250313-346074-h70moy clean

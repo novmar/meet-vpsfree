@@ -1,0 +1,35 @@
+{
+  "nixpkgs": {
+    "type": "git-rev",
+    "nix_options": {
+      "fetchSubmodules": false,
+      "update": {
+        "auto": false,
+        "interval": 3600,
+        "ref": "refs/heads/nixos-21.11"
+      },
+      "url": "https://github.com/NixOS/nixpkgs"
+    },
+    "state": {
+      "rev": "eabc38219184cc3e04a974fe31857d8e0eac098d",
+      "date": "2025-03-22T22:34:26+01:00"
+    },
+    "info": {
+      "rev": "eabc38219184cc3e04a974fe31857d8e0eac098d",
+      "sha256": "04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5"
+    },
+    "fetcher": {
+      "type": "git-rev",
+      "options": {
+        "rev": "eabc38219184cc3e04a974fe31857d8e0eac098d",
+        "wrapped_fetcher": {
+          "type": "zip",
+          "options": {
+            "url": "https://github.com/NixOS/nixpkgs/archive/eabc38219184cc3e04a974fe31857d8e0eac098d.tar.gz",
+            "sha256": "04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5"
+          }
+        }
+      }
+    }
+  }
+}
