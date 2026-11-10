@@ -29,7 +29,17 @@ in
   # XMPP c2s only for the videobridges, web clients go through nginx /xmpp-websocket
   networking.firewall.extraCommands = lib.concatMapStrings (ip: ''
     iptables -A nixos-fw -p tcp -s ${ip} --dport 5222 -j nixos-fw-accept
-  '') jvbIps;
+  '') jvbIps + ''
+    iptables -A nixos-fw -p tcp -s 172.16.4.0/24 --dport 9888 -j nixos-fw-accept
+  '';
+
+  # jicofo's REST port (8888, localhost) also serves conference-request and move-endpoints,
+  # so only its Prometheus /metrics is exposed, on 9888 for vpsFree monitoring
+  services.nginx.virtualHosts."jicofo-metrics" = {
+    listen = [ { addr = "0.0.0.0"; port = 9888; } ];
+    locations."= /metrics".proxyPass = "http://127.0.0.1:8888/metrics";
+    locations."/".return = "404";
+  };
 
   # "*syslog" logs every level incl. debug (~150k lines/hour)
   services.prosody.log = ''{ info = "*syslog" }'';
