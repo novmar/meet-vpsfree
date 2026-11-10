@@ -19,10 +19,8 @@ domain:
       hostName = domain;
       userName = "jvb";
       mucNickname = config.networking.hostName;
-      # prosody serves auth.<domain> with a self-signed cert; once it has the ACME cert
-      # (environments/meet.nix, needs DNS auth.<domain>) switch to false
-      disableCertificateVerification = true;
-      # disableCertificateVerification = false;
+      # prosody serves auth.<domain> with an ACME cert (environments/meet.nix)
+      disableCertificateVerification = false;
       passwordFile = "/secrets/jitsi-meet/videobridge-secret";
       mucJids = "jvbbrewery@internal.auth.${domain}";
     };

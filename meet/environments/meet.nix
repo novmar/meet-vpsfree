@@ -37,22 +37,21 @@ in
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme@marnov.cz";
 
-  # Trusted cert for the XMPP domain auth.<domain>, so videobridges can verify prosody
-  # (then disableCertificateVerification = false in jvb.nix). Also uncomment serverAliases
-  # in the nginx vhost below. Needs DNS first: auth.<domain> CNAME <domain>
-  # security.acme.certs.${domain}.reloadServices = [ "prosody.service" ];
-  # users.users.prosody.extraGroups = [ config.security.acme.certs.${domain}.group ];
-  # services.prosody.virtualHosts."auth.${domain}".ssl = lib.mkForce {
-  #   cert = "${acmeDir}/fullchain.pem";
-  #   key = "${acmeDir}/key.pem";
-  # };
+  # Trusted cert for the XMPP domain auth.<domain> (DNS: auth.<domain> CNAME <domain>),
+  # so videobridges verify prosody. The name is added to the ACME cert via serverAliases below.
+  security.acme.certs.${domain}.reloadServices = [ "prosody.service" ];
+  users.users.prosody.extraGroups = [ config.security.acme.certs.${domain}.group ];
+  services.prosody.virtualHosts."auth.${domain}".ssl = lib.mkForce {
+    cert = "${acmeDir}/fullchain.pem";
+    key = "${acmeDir}/key.pem";
+  };
 
   services.nginx = {
     eventsConfig = "worker_connections 2048;";
     recommendedProxySettings = true;
 
     virtualHosts.${domain} = {
-      # serverAliases = [ "auth.${domain}" ]; # ACME SAN for prosody, see above
+      serverAliases = [ "auth.${domain}" ]; # ACME SAN for prosody, see above
       locations = {
         "^~ /image/".root = images;
         "= /css/all.css".alias = allCss;
