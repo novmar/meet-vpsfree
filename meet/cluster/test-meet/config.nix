@@ -4,6 +4,7 @@
     (import ../../environments/meet.nix {
       domain = "test-meet.vpsfree.cz";
       assetsDomain = "test-meet-nixos.vpsfree.cz";
+      jvbTag = "test-meet";
     })
   ];
   networking.hostName = "test-meet";

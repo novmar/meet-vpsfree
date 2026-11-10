@@ -1,6 +1,8 @@
 # Jitsi master (prosody + jicofo + web), videobridges connect from jvb.nix, e.g.
-#   imports = [ (import ../../environments/meet.nix { domain = "meet.vpsfree.cz"; assetsDomain = "meet-nixos.vpsfree.cz"; }) ];
-{ domain, assetsDomain }:
+#   imports = [ (import ../../environments/meet.nix {
+#     domain = "meet.vpsfree.cz"; assetsDomain = "meet-nixos.vpsfree.cz"; jvbTag = "meet-jvb"; }) ];
+# jvbTag: confctl tag of the videobridges allowed to reach XMPP (5222)
+{ domain, assetsDomain, jvbTag }:
 { config, pkgs, lib, ... }:
 let
   images = "/data/nginx/images";
@@ -11,6 +13,11 @@ let
       --replace-fail 'url(../images/welcome-background.png)' 'url(/image/server.jpg)' \
       --replace-fail 'width:71px;height:32px' 'width:140px;height:70px'
   '';
+
+  jvbIps = lib.mapAttrsToList (_: m: m.host.target)
+    (lib.filterAttrs (_: m: lib.elem jvbTag m.tags) config.cluster);
+
+  acmeDir = config.security.acme.certs.${domain}.directory;
 in
 {
   imports = [ ./base.nix ];
@@ -18,23 +25,39 @@ in
   # jitsi-meet inherits libolm's knownVulnerabilities (deprecated E2EE library)
   nixpkgs.config.allowInsecurePredicate = pkg: lib.getName pkg == "jitsi-meet";
 
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-    5222 # XMPP c2s for the videobridges
-  ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  # XMPP c2s only for the videobridges, web clients go through nginx /xmpp-websocket
+  networking.firewall.extraCommands = lib.concatMapStrings (ip: ''
+    iptables -A nixos-fw -p tcp -s ${ip} --dport 5222 -j nixos-fw-accept
+  '') jvbIps;
+
+  # "*syslog" logs every level incl. debug (~150k lines/hour)
+  services.prosody.log = ''{ info = "*syslog" }'';
 
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme@marnov.cz";
+
+  # Trusted cert for the XMPP domain auth.<domain>, so videobridges can verify prosody
+  # (then disableCertificateVerification = false in jvb.nix). Also uncomment serverAliases
+  # in the nginx vhost below. Needs DNS first: auth.<domain> CNAME <domain>
+  # security.acme.certs.${domain}.reloadServices = [ "prosody.service" ];
+  # users.users.prosody.extraGroups = [ config.security.acme.certs.${domain}.group ];
+  # services.prosody.virtualHosts."auth.${domain}".ssl = lib.mkForce {
+  #   cert = "${acmeDir}/fullchain.pem";
+  #   key = "${acmeDir}/key.pem";
+  # };
 
   services.nginx = {
     eventsConfig = "worker_connections 2048;";
     recommendedProxySettings = true;
 
-    virtualHosts.${domain}.locations = {
-      "^~ /image/".root = images;
-      "= /css/all.css".alias = allCss;
-      "^~ /xmpp-websocket".extraConfig = "proxy_read_timeout 900s;";
+    virtualHosts.${domain} = {
+      # serverAliases = [ "auth.${domain}" ]; # ACME SAN for prosody, see above
+      locations = {
+        "^~ /image/".root = images;
+        "= /css/all.css".alias = allCss;
+        "^~ /xmpp-websocket".extraConfig = "proxy_read_timeout 900s;";
+      };
     };
 
     # Old branding host, kept for external links to the images

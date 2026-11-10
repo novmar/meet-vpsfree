@@ -22,3 +22,11 @@ Never deploy all machines at once, the pairs above would overwrite each other.
 
 Use `boot` + `--reboot` when the systemd version changes: a live `switch` re-executes
 PID1 and on cgroup v1 nodes the container hung (systemd 257 -> 262, Nov 2026).
+
+DNS (pending)
+-------------
+For a trusted prosody cert on the XMPP domain `auth.<domain>` (prepared, commented out in
+`environments/meet.nix` and `environments/jvb.nix`):
+
+    auth.meet.vpsfree.cz       CNAME  meet.vpsfree.cz
+    auth.test-meet.vpsfree.cz  CNAME  test-meet.vpsfree.cz
