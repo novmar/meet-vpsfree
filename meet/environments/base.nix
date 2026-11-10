@@ -20,6 +20,13 @@
   services.resolved.enable = false;
   systemd.settings.Manager.DefaultTimeoutStartSec = "900s";
 
+  # Old system generations pile up with every deploy (jvb11/test-meet swaps the most)
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
   services.prometheus.exporters.node = {
     enable = true;
     disabledCollectors = [ "powersupplyclass" ]; # /sys/class/power_supply is denied in containers
