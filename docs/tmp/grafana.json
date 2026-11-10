@@ -337,124 +337,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb1\",project=\"vpsfree\"}[5m]))",
+          "expr": "clamp(avg by (alias) (1 - irate(node_cpu_seconds_total{mode=\"idle\",job=\"meet-jvbs\",project=\"vpsfree\"}[5m])), 0, 1)",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb2\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb3\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb4\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb5\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb6\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb7\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb8\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb9\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb10\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb11\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb12\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb13\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb14\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb15\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb16\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb17\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb18\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb19\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "avg by(alias) (1-irate(node_cpu{mode=\"idle\",alias=\"meet-jvb20\",project=\"vpsfree\"}[5m]))",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -481,8 +367,8 @@
           "format": "percentunit",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": 1,
+          "min": 0,
           "show": true
         },
         {
@@ -548,131 +434,17 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_overall_loss{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_rtp_loss{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Round Trip Loss",
+      "title": "Packet Loss (overall)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -777,7 +549,7 @@
       "pluginVersion": "7.5.10",
       "targets": [
         {
-          "expr": "avg by (instance) (avg by (alias) (1-irate(node_cpu{mode=\"idle\",job=\"meet-jvbs\",project=\"vpsfree\"}[5m])))",
+          "expr": "clamp(avg(1 - irate(node_cpu_seconds_total{mode=\"idle\",job=\"meet-jvbs\",project=\"vpsfree\"}[5m])), 0, 1)",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -785,6 +557,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
+      "title": "CPU avg (jvbs)",
       "transparent": true,
       "type": "gauge"
     },
@@ -862,6 +635,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
+      "title": "Download total",
       "transparent": true,
       "type": "gauge"
     },
@@ -939,6 +713,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
+      "title": "Upload total",
       "transparent": true,
       "type": "gauge"
     },
@@ -990,131 +765,17 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_incoming_loss{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_loss_rate_download{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Loss Rate Download",
+      "title": "Packet Loss Incoming (clients -> bridge)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1200,131 +861,17 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_outgoing_loss{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_loss_rate_upload{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Loss Rate Upload",
+      "title": "Packet Loss Outgoing (bridge -> clients)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1412,124 +959,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_conferences{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_conferences{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_conferences{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -1624,131 +1057,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_endpoints_sending_video{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_videochannels{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Video Channels",
+      "title": "Endpoints Sending Video",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1835,131 +1154,17 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_stress_level{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_jitter_aggregate{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Aggregate Jitter",
+      "title": "Bridge Stress (1.0 = overloaded)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1976,11 +1181,11 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "percentunit",
           "label": "",
-          "logBase": 2,
-          "max": "800",
-          "min": null,
+          "logBase": 1,
+          "max": null,
+          "min": 0,
           "show": true
         },
         {
@@ -2046,124 +1251,10 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_rtt_aggregate{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_rtt_aggregate{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -2259,124 +1350,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_participants{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_participants{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_participants{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -2471,146 +1448,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_endpoints_sending_audio{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "T"
-        },
-        {
-          "expr": "jitsi_endpoints_sending_audio{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "U"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Audio Channels",
+      "title": "Endpoints Sending Audio",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2698,124 +1546,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_bit_rate_download{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_bit_rate_download{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -2908,124 +1642,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb1\",project=\"vpsfree\"}",
+          "expr": "max by (alias) (jitsi_bit_rate_upload{project=\"vpsfree\"})",
           "interval": "",
-          "legendFormat": "jvb1",
+          "legendFormat": "{{alias}}",
           "refId": "A"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb2\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb2",
-          "refId": "B"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb3\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb3",
-          "refId": "C"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb4\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb4",
-          "refId": "D"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb5\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb5",
-          "refId": "E"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb6\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb6",
-          "refId": "F"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb7\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb7",
-          "refId": "G"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb8\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb8",
-          "refId": "H"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb9\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb9",
-          "refId": "I"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb10\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb10",
-          "refId": "J"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb11\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb11",
-          "refId": "K"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb12\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb12",
-          "refId": "L"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb13\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb13",
-          "refId": "M"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb14\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb14",
-          "refId": "N"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb15\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb15",
-          "refId": "O"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb16\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb16",
-          "refId": "P"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb17\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb17",
-          "refId": "Q"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb18\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb18",
-          "refId": "R"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb19\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb19",
-          "refId": "S"
-        },
-        {
-          "expr": "jitsi_bit_rate_upload{alias=\"meet-jvb20\",project=\"vpsfree\"}",
-          "interval": "",
-          "legendFormat": "jvb20",
-          "refId": "T"
         }
       ],
       "thresholds": [],
@@ -3097,5 +1717,5 @@
   "timezone": "",
   "title": "Meet.vpsFree.cz Status",
   "uid": "t_Ej6KrZk",
-  "version": 167
+  "version": 169
 }
