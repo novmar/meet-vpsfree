@@ -15,8 +15,8 @@ Testing a new setup
 | 37.205.13.90  | jvb11      | test-meet    |
 | 37.205.14.250 | jvb10      | test-jvb01   |
 
-1. `confctl deploy --reboot -t test-meet boot`, verify https://test-meet.vpsfree.cz
-2. `confctl deploy --reboot -t meet-nixos boot` (master + jvb1..11, jvb10/11 go back to production)
+1. `confctl deploy --reboot -t test-meet '*' boot`, verify https://test-meet.vpsfree.cz
+2. `confctl deploy --reboot -t meet-nixos '*' boot` (master + jvb1..11, jvb10/11 go back to production)
 
 Never deploy all machines at once, the pairs above would overwrite each other.
 
