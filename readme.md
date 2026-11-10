@@ -1,9 +1,24 @@
 meet.vpsfree.cz
 ===============
-create hypermeet.vpsfree.cz
+Jitsi Meet on vpsFree NixOS containers, managed by [confctl](https://github.com/vpsfreecz/confctl) (`cd meet && nix-shell`).
 
+- `environments/meet.nix` - master (prosody, jicofo, nginx), parametrized by domain
+- `environments/jvb.nix` - videobridge, parametrized by master domain
+- `environments/base.nix` - shared container base
 
-todo
-====
-- [ ] remove  "vpsadminos-master" from module.nix on each machineA
-- [ ] connect exports from, nix and jitsi to one place(port)
+Testing a new setup
+-------------------
+`jvb10` and `jvb11` share their containers with the test cluster:
+
+| container     | production | test         |
+|---------------|------------|--------------|
+| 37.205.13.90  | jvb11      | test-meet    |
+| 37.205.14.250 | jvb10      | test-jvb01   |
+
+1. `confctl deploy --reboot -t test-meet boot`, verify https://test-meet.vpsfree.cz
+2. `confctl deploy --reboot -t meet-nixos boot` (master + jvb1..11, jvb10/11 go back to production)
+
+Never deploy all machines at once, the pairs above would overwrite each other.
+
+Use `boot` + `--reboot` when the systemd version changes: a live `switch` re-executes
+PID1 and on cgroup v1 nodes the container hung (systemd 257 -> 262, Nov 2026).

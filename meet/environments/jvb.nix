@@ -1,53 +1,28 @@
-{ config, pkgs, lib, ... }:
+# Videobridge connected to the given Jitsi master, e.g.
+#   imports = [ (import ../../environments/jvb.nix "meet.vpsfree.cz") ];
+domain:
+{ config, ... }:
 {
-    networking.nat.externalInterface = "venet0";
+  imports = [ ./base.nix ];
 
-    networking.firewall =  {
-       enable = false;
-       allowedTCPPorts = [
-            443 # for forward to jitsi
-            5443
-            9700 # port for jitsi-exporter
-            9100 # port for prometheus node-exporter
-            ];
+  services.prometheus.exporters.jitsi.enable = true;
+
+  services.jitsi-videobridge = {
+    enable = true;
+    openFirewall = true; # UDP 10000
+    colibriRestApi = true; # localhost only, used by the jitsi exporter
+    # Public IP sits directly on venet0, no NAT discovery through 3rd-party STUN
+    nat.harvesterAddresses = [ ];
+    config.videobridge.server-id = config.networking.hostName;
+    xmppConfigs.${domain} = {
+      domain = "auth.${domain}";
+      hostName = domain;
+      userName = "jvb";
+      mucNickname = config.networking.hostName;
+      # prosody serves auth.<domain> with a self-signed cert
+      disableCertificateVerification = true;
+      passwordFile = "/secrets/jitsi-meet/videobridge-secret";
+      mucJids = "jvbbrewery@internal.auth.${domain}";
     };
-
-  networking.useDHCP = false;
-  services.resolved.enable = false;
-  systemd.extraConfig = ''
-    DefaultTimeoutStartSec=900s
-  '';
-  systemd.services.systemd-udev-trigger.enable = false;
-
-  # ... standard NixOS configuration ...
-
-    services.prometheus.exporters.jitsi.enable = true;
-    services.prometheus.exporters.node.enable  = true;
-#    services.prometheus.exporters.node.enabledCollectors  = [ "systemd" ];
-    services.jitsi-videobridge = {
-        openFirewall = true;
-        enable = true;
-          colibriRestApi = true;
-          config = {
-            videobridge = {
-            TCP_HARVESTER_PORT=443;
-            ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS = "${config.cluster."${config.networking.hostName}".host.target}";
-            ice.tcp = {
-                enabled = true;
-                port = 443;
-                };
-            server-id = config.networking.hostName;
-            };
-        };
-        xmppConfigs."meet.vpsfree.cz" = {
-            domain = "auth.meet.vpsfree.cz";
-            hostName = "meet.vpsfree.cz";
-            userName = "jvb";
-            mucNickname = "${config.networking.hostName}";
-            disableCertificateVerification = true;
-            passwordFile = "/secrets/jitsi-meet/videobridge-secret";
-            mucJids = "jvbbrewery@internal.auth.meet.vpsfree.cz";
-        };
-    };
-
+  };
 }
