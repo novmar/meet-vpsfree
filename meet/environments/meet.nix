@@ -1,8 +1,10 @@
 # Jitsi master (prosody + jicofo + web), videobridges connect from jvb.nix, e.g.
 #   imports = [ (import ../../environments/meet.nix {
-#     domain = "meet.vpsfree.cz"; assetsDomain = "meet-nixos.vpsfree.cz"; jvbTag = "meet-jvb"; }) ];
+#     domain = "meet.vpsfree.cz"; assetsDomain = "meet-nixos.vpsfree.cz";
+#     jvbTag = "meet-jvb"; turnDomain = "turn.meet.vpsfree.cz"; }) ];
 # jvbTag: confctl tag of the videobridges allowed to reach XMPP (5222)
-{ domain, assetsDomain, jvbTag }:
+# turnDomain: coturn from environments/turn.nix, shares /secrets/turn/secret
+{ domain, assetsDomain, jvbTag, turnDomain }:
 { config, pkgs, lib, ... }:
 let
   images = "/data/nginx/images";
@@ -43,6 +45,19 @@ in
 
   # "*syslog" logs every level incl. debug (~150k lines/hour)
   services.prosody.log = ''{ info = "*syslog" }'';
+
+  # TURN credentials for clients (XEP-0215), HMAC-signed with the secret coturn also has
+  # (/secrets/turn/secret, root 0600, no trailing newline: Credential() reads it verbatim).
+  # Clients drop TURN/UDP for the bridge (useTurnUdp), TCP and TLS on 443 are the fallback.
+  services.prosody.extraConfig = ''
+    external_service_secret = Credential("turn-secret")
+    external_services = {
+      { type = "turn", host = "${turnDomain}", port = 3478, transport = "udp", secret = true },
+      { type = "turn", host = "${turnDomain}", port = 3478, transport = "tcp", secret = true },
+      { type = "turns", host = "${turnDomain}", port = 443, transport = "tcp", secret = true },
+    }
+  '';
+  systemd.services.prosody.serviceConfig.LoadCredential = [ "turn-secret:/secrets/turn/secret" ];
 
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "acme@marnov.cz";

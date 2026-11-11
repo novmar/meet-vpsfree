@@ -29,3 +29,10 @@ DNS
     auth.test-meet.vpsfree.cz  CNAME  test-meet.vpsfree.cz
     turn.meet.vpsfree.cz       CNAME  jvb1.vpsfree.cz        # TURN (not deployed yet)
     turn.test-meet.vpsfree.cz  CNAME  test-jvb01.vpsfree.cz
+
+TURN
+----
+coturn on jvb1 (`turn.meet.vpsfree.cz`) and test-jvb01 (`turn.test-meet.vpsfree.cz`), TURNS on 443/tcp,
+TURN on 3478. Prosody hands out credentials (`external_services`). The shared secret is not in the repo:
+`/secrets/turn/secret` on the master and the TURN host, root 0600, **no trailing newline**
+(`openssl rand -hex 32 | tr -d '\n' > /secrets/turn/secret`). The relay only reaches the bridges.

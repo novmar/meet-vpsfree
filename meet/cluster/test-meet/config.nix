@@ -5,6 +5,7 @@
       domain = "test-meet.vpsfree.cz";
       assetsDomain = "test-meet-nixos.vpsfree.cz";
       jvbTag = "test-meet";
+      turnDomain = "turn.test-meet.vpsfree.cz";
     })
   ];
   networking.hostName = "test-meet";
